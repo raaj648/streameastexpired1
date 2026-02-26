@@ -1,0 +1,392 @@
+/* ==========================================================================
+   Google Fonts Import
+   Oswald for dynamic sports-style headings, Inter for highly readable body text.
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;600;700&display=swap');
+
+/* ==========================================================================
+   CSS Variables (Theme & Colors)
+   ========================================================================== */
+:root {
+    /* Color Palette */
+    --bg-body: #090c15;         /* Deep dark navy/black */
+    --bg-surface: #131a2a;      /* Lighter card background */
+    --bg-header: rgba(9, 12, 21, 0.95);
+    
+    --accent-primary: #00e5ff;  /* Vibrant electric cyan */
+    --accent-secondary: #0077ff;/* Deep electric blue */
+    --accent-hover: #00c4db;
+    
+    --text-primary: #f8fafc;    /* Off-white for high contrast */
+    --text-secondary: #94a3b8;  /* Muted grey for paragraphs */
+    --text-muted: #64748b;
+    
+    --border-color: #1e293b;
+    
+    /* Typography */
+    --font-heading: 'Oswald', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Spacing & Layout */
+    --max-width: 1000px;
+    --transition-speed: 0.3s;
+}
+
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   Typography (SEO & Accessibility Optimized)
+   ========================================================================== */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    letter-spacing: 0.5px;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 600;
+    margin-top: 2.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+    position: relative;
+}
+
+/* Sporty underline effect for h2 */
+h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 60px;
+    background-color: var(--accent-primary);
+}
+
+h3 {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 600;
+    margin-top: 2rem;
+    color: var(--accent-primary);
+}
+
+p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+
+strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+/* Focus states for accessibility */
+a:focus-visible, button:focus-visible {
+    outline: 2px dashed var(--accent-primary);
+    outline-offset: 4px;
+}
+
+/* ==========================================================================
+   Layout Containers
+   ========================================================================== */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+header {
+    background-color: var(--bg-header);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Add a glowing dot to the logo to signify "LIVE" */
+.logo::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: #ff2a2a;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff2a2a;
+    animation: pulse 2s infinite;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+nav ul li a {
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    text-decoration: none;
+}
+
+/* Sporty underline hover effect for Nav */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--accent-primary);
+    transition: width var(--transition-speed) ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+#hero {
+    padding: 6rem 0;
+    background: radial-gradient(circle at top right, #1a2a47 0%, var(--bg-body) 60%);
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+    color: var(--text-secondary);
+}
+
+/* Call To Action Button */
+.btn-primary {
+    display: inline-block;
+    background: linear-gradient(45deg, var(--accent-secondary), var(--accent-primary));
+    color: #fff !important;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(0, 229, 255, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(0, 229, 255, 0.4);
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   Main Content & Articles (SEO structure)
+   ========================================================================== */
+main {
+    padding: 4rem 0;
+}
+
+article section {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Removes top margin from the first h2 in each section to keep alignment neat */
+article section h2:first-child {
+    margin-top: 0;
+}
+
+/* Subtle hover effect on sections to feel dynamic */
+article section:hover {
+    border-color: rgba(0, 229, 255, 0.3);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    transition: all var(--transition-speed) ease;
+}
+
+/* FAQ Section styling */
+#faq h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+#faq h3::before {
+    content: 'Q: ';
+    color: var(--accent-primary);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+    background-color: #05070c;
+    border-top: 1px solid var(--border-color);
+    padding: 2rem 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Keyframes (Animations)
+   ========================================================================== */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 42, 42, 0.7); }
+    70% { box-shadow: 0 0 0 8px rgba(255, 42, 42, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 42, 42, 0); }
+}
+
+/* ==========================================================================
+   Media Queries (Responsive Design for Mobile & Tablet)
+   ========================================================================== */
+
+/* Tablet Portrait */
+@media screen and (max-width: 992px) {
+    #hero {
+        padding: 4rem 0;
+    }
+    
+    article section {
+        padding: 2rem;
+    }
+}
+
+/* Mobile Landscape & General Mobile */
+@media screen and (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.2rem;
+    }
+
+    #hero {
+        padding: 3rem 0;
+    }
+
+    #hero p {
+        font-size: 1rem;
+    }
+    
+    article section {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .btn-primary {
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Small Mobile Screens */
+@media screen and (max-width: 480px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+    }
+    
+    p {
+        font-size: 0.95rem;
+    }
+
+    article section {
+        padding: 1.2rem;
+        margin-bottom: 1rem;
+    }
+}
